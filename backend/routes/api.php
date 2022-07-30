@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Flight;
 use App\Models\Airport;
 
 /*
@@ -19,10 +19,14 @@ Route::get('airports', function () {
     return Airport::all();
 });
 
-Route::get('flight/search', function (\App\Http\Requests\FlightSearchRequest $request) {
+Route::get('flights', function () {
+    return Flight::all();
+});
+
+Route::get('flights/search', function (\App\Http\Requests\FlightSearchRequest $request) {
 
 
-    return \App\Models\Flight::findCheaperRoute(
+    return Flight::findCheaperRoute(
         $request->get('departure'),
         $request->get('arrival'),
         $request->get('stops', 0)
