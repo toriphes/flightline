@@ -7,6 +7,8 @@ function Flights() {
     <div className="container mx-auto px-4 md:px-0 sm:w-4/5 md:w-3/5 py-16">
       <h2 className="text-3xl mb-16">Flight list</h2>
 
+      {fetchState.loading && (<div>Loading...</div>)}
+
       {fetchState.value && (
         <table className="table-auto border-collapse w-full text-sm">
           <thead>
