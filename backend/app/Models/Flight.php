@@ -53,28 +53,35 @@ class Flight extends Model
             $prev_costs = $current_costs;
         }
 
-        $last = $dest;
-        $path = [];
-        while ($last !== $start) {
-            $lowest = null;
+        $last          = $dest;
+        $path          = [];
+        $foundCheapest = isset($prev_costs[$dest]) && $prev_costs[$dest] !== PHP_INT_MAX;
 
-            foreach ($stack as $node) {
-                if ($node['to'] === $last) {
-                    if ($lowest === null) {
-                        $lowest = $node;
-                    } elseif ($node['weight'] < $lowest['weight']) {
-                        $lowest = $node;
+        if ($foundCheapest) {
+            while ($last !== $start) {
+                $lowest = null;
+
+                foreach ($stack as $node) {
+                    if ($node['to'] === $last) {
+                        if ($lowest === null) {
+                            $lowest = $node;
+                        } elseif ($node['weight'] < $lowest['weight']) {
+                            $lowest = $node;
+                        }
                     }
                 }
-            }
 
-            unset($lowest['weight']);
-            array_unshift($path, $lowest);
-            $last = $lowest['from'];
+                if ($lowest) {
+                    unset($lowest['weight']);
+                    array_unshift($path, $lowest);
+                    $last = $lowest['from'];
+                }
+            }
         }
 
+
         return [
-            'total'     => $prev_costs[$dest] !== PHP_INT_MAX ? $prev_costs[$dest] : -1,
+            'total'     => $foundCheapest ? $prev_costs[$dest] : -1,
             'departure' => $start,
             'arrival'   => $dest,
             'stops'     => count($path) - 1,

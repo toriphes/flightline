@@ -290,7 +290,7 @@ class FlightSeeder extends Seeder
         DB::table('flights')->insert([
             [
                 'code_departure' => 'FLR',
-                'code_arrival'   => 'MPX',
+                'code_arrival'   => 'MXP',
                 'price'          => 60.0,
             ],
 
@@ -307,7 +307,7 @@ class FlightSeeder extends Seeder
 
             [
                 'code_departure' => 'CTA',
-                'code_arrival'   => 'MPX',
+                'code_arrival'   => 'MXP',
                 'price'          => 220.0,
             ],
 
@@ -330,7 +330,7 @@ class FlightSeeder extends Seeder
             ],
             [
                 'code_departure' => 'BLQ',
-                'code_arrival'   => 'MPX',
+                'code_arrival'   => 'MXP',
                 'price'          => 110.0,
             ],
         ]);
