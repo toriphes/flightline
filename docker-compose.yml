@@ -7,7 +7,7 @@ services:
         container_name: flights-api
         build:
             dockerfile: api.Dockerfile
-        command: bash -c "composer install && php artisan serve --host 0.0.0.0"
+        command: bash -c "composer install && chmod +x /usr/bin/wait_for_mysql.sh && /usr/bin/wait_for_mysql.sh && php artisan migrate:fresh --seed && php artisan serve --host 0.0.0.0"
         working_dir: /usr/src/app
         env_file: .env
         ports:
@@ -15,6 +15,7 @@ services:
         expose:
             - ${BACKEND_PORT}
         volumes:
+            - ./scripts/wait_for_mysql.sh:/usr/bin/wait_for_mysql.sh
             - ./backend:/usr/src/app
             - /usr/src/app/vendor
         depends_on:
