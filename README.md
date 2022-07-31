@@ -26,6 +26,8 @@ You can change the `fixture` in the test file to add more flight routes and make
 
 ## Getting Started
 
+![screenshot](demo-screen.png)
+
 To demonstrate the algorithm in a real use case and make things more exciting, I created a solution consisting of two applications.
 
 * Backend API application built with [Laravel Framework](https://laravel.com/)
