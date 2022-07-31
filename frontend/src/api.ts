@@ -16,6 +16,13 @@ export type Itinerary = {
   total: number
 }
 
+export type Flight = {
+  id: number;
+  code_departure: string;
+  code_arrival: string;
+  price: number;
+}
+
 export type FlightTrip = {
   price: number;
   from: string;
@@ -38,5 +45,14 @@ export function fetchItinerary(params: {[key: string]: any}) {
   return useAsyncFn(async () => {
     const response = await fetch(url);
     return await response.json() as Itinerary;
+  }, [url]);
+}
+
+export function fetchFlights() {
+  const url = import.meta.env.API_URL + '/api/flights'
+
+  return useAsync(async () => {
+    const response = await fetch(url);
+    return await response.json() as Flight[];
   }, [url]);
 }
