@@ -1,6 +1,7 @@
 logs
 *.log
 .docker-data
+/vendor/
 
 # Editor directories and files
 .vscode/*
