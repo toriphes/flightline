@@ -9,6 +9,11 @@
             "email": "giulioganci@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Flightline\\": "src/"
+        }
+    },
     "scripts": {
         "test": "@php vendor/bin/codecept run"
     },
